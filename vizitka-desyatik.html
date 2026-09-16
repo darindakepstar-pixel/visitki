@@ -38,8 +38,10 @@ a{color:inherit;text-decoration:none}
 .top .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,16,38,.62) 0%,rgba(7,19,45,.80) 45%,rgba(7,19,45,.95) 100%)}
 .top > *:not(.ph):not(.veil){position:relative;z-index:2}
 .tbar{display:flex;align-items:center;gap:12px;min-height:34px}
-.wm{font-family:var(--dis);font-weight:900;font-size:19px;letter-spacing:.06em;line-height:1}
-.wm span{display:block;font-size:8.5px;letter-spacing:.26em;color:var(--turq);font-weight:700;margin-top:5px}
+.wm{max-width:250px;line-height:1.28}
+.wm .b1{font-weight:800;font-size:13.5px;color:#fff}
+.wm .b2{display:block;font-size:12px;color:var(--turq);font-weight:600;margin-top:2px}
+.fwm{font-family:var(--dis);font-weight:900;font-size:17px;letter-spacing:.05em;color:#fff;margin-bottom:10px}
 .pills{margin-left:auto;display:flex;gap:5px}
 .pill{min-width:40px;min-height:32px;display:grid;place-items:center;font-size:11.5px;font-weight:700;border-radius:999px;
   border:1px solid rgba(255,255,255,.3);background:transparent;color:rgba(255,255,255,.78);cursor:pointer;font-family:inherit;padding:0 8px}
@@ -62,6 +64,18 @@ a{color:inherit;text-decoration:none}
 .share{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:46px;margin-top:9px;
   border:1px solid rgba(255,255,255,.32);border-radius:14px;background:transparent;color:#fff;font-family:inherit;font-weight:600;font-size:14.5px;cursor:pointer}
 
+.calls{display:grid;gap:8px;padding:18px 16px 0}
+.cbox{display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:16px;min-height:66px}
+.cbox svg{width:22px;height:22px;flex:none;margin-left:auto}
+.cbox .cl{min-width:0}
+.cbox small{display:block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.75}
+.cbox b{display:block;font-size:18px;font-weight:800;letter-spacing:.01em;margin-top:3px;white-space:nowrap}
+.cbox.me{background:var(--deep);color:#fff}
+.cbox.me small{color:var(--turq);opacity:1}
+.cbox.mgr{background:var(--card);border:1px solid var(--line);color:var(--deep)}
+.cbox.mgr small{color:var(--muted)}
+.cbox.mgr b{font-size:16.5px;font-weight:700}
+@media(max-width:340px){.cbox b{font-size:16px}.cbox.mgr b{font-size:15px}}
 .acts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:18px 16px 4px}
 .act{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 8px;text-align:center;min-height:86px;
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px}
@@ -84,6 +98,10 @@ a{color:inherit;text-decoration:none}
 .tm .t{flex:1;min-width:0}
 .tm b{display:block;font-size:15px;color:var(--deep)}
 .tm span{display:block;font-size:12.5px;color:var(--muted);line-height:1.35}
+.tm.sm{padding:11px 14px}
+.tm.sm .gl{width:32px;height:32px;border-radius:9px;font-size:10.5px}
+.tm.sm b{font-size:13px}
+.tm.sm span{font-size:11.5px}
 .tm .go{font-size:12px;font-weight:700;color:var(--cyan)}
 .nums{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .num{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px}
@@ -91,6 +109,7 @@ a{color:inherit;text-decoration:none}
 .num span{font-size:11.5px;color:var(--muted);line-height:1.3;display:block;margin-top:4px}
 .chips{display:flex;flex-wrap:wrap;gap:7px}
 .chip{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:8px 13px;font-size:13px;color:#33405C}
+.alc-h{font-weight:800;font-size:15.5px;color:var(--deep);margin-bottom:6px}
 .chip.dot::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--cyan);margin-right:7px;vertical-align:1px}
 
 details{margin:20px 16px 0;background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden}
@@ -126,7 +145,7 @@ details[open] summary::after{content:"–"}
     <div class="veil"></div>
 
     <div class="tbar">
-      <div class="wm">ТЛТ М9<span>ТЛТ СКАНДИНАВИЯ</span></div>
+      <div class="wm"><span class="b1" data-i18n="brand1"></span><span class="b2" data-i18n="brand2"></span></div>
       <div class="pills">
         <button class="pill on" data-lang="ru">RU</button>
         <button class="pill" data-lang="en">EN</button>
@@ -153,18 +172,24 @@ details[open] summary::after{content:"–"}
     </button>
   </div>
 
-  <div class="acts" id="acts"></div>
+  <div class="calls">
+    <a class="cbox me" id="cMeBox">
+      <div class="cl">
+        <small data-i18n="cMe"></small>
+        <b id="cMeNum"></b>
+      </div>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.4 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.4 1.8.6 2.8.8a2 2 0 0 1 1.7 2z"/></svg>
+    </a>
+    <a class="cbox mgr" id="cMgrBox">
+      <div class="cl">
+        <small data-i18n="cMgr"></small>
+        <b id="cMgrNum"></b>
+      </div>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M17 20v-1.5a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4V20"/><circle cx="9.5" cy="7" r="3.5"/><path d="M19 8v6M22 11h-6"/></svg>
+    </a>
+  </div>
 
-  <section class="sec">
-    <h2 data-i18n="addrT"></h2>
-    <div class="box">
-      <div class="addr" id="addrText"></div>
-      <a class="route" id="routeBtn" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
-        <span data-i18n="route"></span>
-      </a>
-    </div>
-  </section>
+  <div class="acts" id="acts"></div>
 
   <section class="sec">
     <h2 data-i18n="termT"></h2>
@@ -173,7 +198,7 @@ details[open] summary::after{content:"–"}
         <div class="gl">М9</div>
         <div class="t"><b data-i18n="t1n"></b><span data-i18n="t1d"></span></div><div class="go">→</div>
       </a>
-      <a class="tm" href="https://www.tlt-scand.ru" target="_blank" rel="noopener">
+      <a class="tm sm" href="https://www.tlt-scand.ru" target="_blank" rel="noopener">
         <div class="gl">СК</div>
         <div class="t"><b data-i18n="t2n"></b><span data-i18n="t2d"></span></div><div class="go">→</div>
       </a>
@@ -188,13 +213,17 @@ details[open] summary::after{content:"–"}
       <span class="chip" data-i18n="c3"></span><span class="chip" data-i18n="c4"></span>
       <span class="chip" data-i18n="c5"></span>
     </div>
+    <div class="box" style="margin-top:10px">
+      <div class="alc-h" data-i18n="alcT"></div>
+      <p data-i18n="alcB"></p>
+    </div>
   </section>
 
   <section class="sec">
     <h2 data-i18n="numT"></h2>
     <div class="nums">
       <div class="num"><b>2</b><span data-i18n="n1"></span></div>
-      <div class="num"><b>≈40 000 м²</b><span data-i18n="n2"></span></div>
+      <div class="num"><b data-i18n="n2b"></b><span data-i18n="n2"></span></div>
       <div class="num"><b>24/7</b><span data-i18n="n3"></span></div>
       <div class="num"><b>616 км М9</b><span data-i18n="n4"></span></div>
     </div>
@@ -208,6 +237,7 @@ details[open] summary::after{content:"–"}
       <span class="chip dot" data-i18n="s5"></span><span class="chip dot" data-i18n="s6"></span>
     </div>
   </section>
+
 
   <details id="qrWrap">
     <summary data-i18n="qrT"></summary>
@@ -223,13 +253,9 @@ details[open] summary::after{content:"–"}
   </details>
 
   <div class="foot">
-    <div class="wm">ТЛТ М9<span>ТЛТ СКАНДИНАВИЯ</span></div>
+    <div class="fwm">ТЛТ М9</div>
     <div><a class="site" id="siteLink" href="https://www.tltm9.ru" target="_blank" rel="noopener">tltm9.ru</a></div>
-    <div class="eco">
-      <span data-i18n="ecoT"></span><br>
-      <a href="https://www.ammaflowers.cn" target="_blank" rel="noopener">AMMA Flowers</a> ·
-      <a href="https://srbglobal.ru" target="_blank" rel="noopener">SRB Global</a>
-    </div>
+    <div style="margin-top:8px"><a class="site" href="https://www.ammaflowers.cn" target="_blank" rel="noopener">ammaflowers.cn</a></div>
   </div>
 
 </div>
@@ -246,9 +272,9 @@ const CONTACT = {
   last:    "Десятик",
   nameEn:  "Mikhail Desyatik",
   nameCn:  "",
-  role:    { ru:"Сооснователь · таможенные терминалы и AMMA Flowers",
-             en:"Co-founder · customs terminals and AMMA Flowers",
-             cn:"联合创始人 · 海关监管场站与 AMMA Flowers" },
+  role:    { ru:"Таможенные терминалы и AMMA Flowers",      // при желании впишите точную должность
+             en:"Customs terminals and AMMA Flowers",
+             cn:"海关监管场站与 AMMA Flowers" },
   company: "ТЛТ М9 · ТЛТ Скандинавия",
   phone:   "+7 (921) 114-17-22",
   manager: "+7 (911) 376-55-36",
@@ -266,17 +292,21 @@ const CONTACT = {
    ========================================================== */
 const T = {
 ru:{
+ brand1:"Таможенно-логистические терминалы", brand2:"и китайская цветочная компания Amma Flowers",
  save:"Сохранить контакт", share:"Поделиться визиткой",
+ cMe:"Михаил Сергеевич · личный", cMgr:"Менеджер ТЛТ М9 · по грузам и оформлению",
  aCall:"Позвонить", aMgr:"Менеджер", aMail:"Почта", aSite:"ТЛТ М9", aSite2:"Скандинавия",
  addrT:"Адрес терминала", route:"Проложить маршрут",
  termT:"Наши площадки",
  t1n:"ТЛТ М9", t1d:"Псковская область, 616 км трассы М-9 «Балтия»",
  t2n:"ТЛТ Скандинавия", t2d:"Выборгский район, Ленинградская область",
- termB:"Два действующих приграничных терминала под управлением одной команды. На каждом проектируется новый складской комплекс около 20 000 м² — суммарно порядка 40 000 м² новых мощностей. Приглашаем якорных клиентов и стратегических партнёров входить в проект на этапе создания.",
+ termB:"Два действующих приграничных терминала под управлением одной команды. На каждой площадке проектируется новый складской комплекс. Приглашаем якорных клиентов и стратегических партнёров входить в проект на этапе создания.",
  capT:"Что можем на площадках",
+ alcT:"Алкоголь и акцизы",
+ alcB:"Работаем с подакцизной продукцией: приём и хранение алкоголя на таможенном складе, нанесение акцизных марок, оформление и учёт партий. Маркировка «Честный знак» — на тех же площадках, отдельного подрядчика искать не нужно.",
  c1:"Таможенный склад", c2:"Честный знак", c3:"Алкоголь и акцизы", c4:"Коммерческое хранение", c5:"Гибкая конфигурация под клиента",
  numT:"Коротко",
- n1:"действующих терминала", n2:"новых мощностей в проекте", n3:"режим работы охраны", n4:"трасса М-9 «Балтия»",
+ n1:"действующих терминала", n2b:"Акцизы", n2:"алкоголь и акцизные марки", n3:"режим работы охраны", n4:"трасса М-9 «Балтия»",
  safeT:"Безопасность",
  s1:"Контролируемый периметр", s2:"Видеонаблюдение", s3:"Физическая охрана",
  s4:"Пропускной режим и КПП", s5:"Пожарная безопасность", s6:"Резервное электроснабжение",
@@ -287,17 +317,21 @@ ru:{
  okSave:"Контакт сохранён", okCopy:"Ссылка скопирована"
 },
 en:{
+ brand1:"Customs and logistics terminals", brand2:"and Amma Flowers, a Chinese flower company",
  save:"Save contact", share:"Share this card",
+ cMe:"Mikhail Desyatik · direct", cMgr:"TLT M9 manager · cargo and clearance",
  aCall:"Call", aMgr:"Manager", aMail:"Email", aSite:"TLT M9", aSite2:"Scandinavia",
  addrT:"Terminal address", route:"Get directions",
  termT:"Our sites",
  t1n:"TLT M9", t1d:"Pskov region, 616 km of the M-9 Baltia highway",
  t2n:"TLT Scandinavia", t2d:"Vyborg district, Leningrad region",
- termB:"Two operating border terminals run by one team. A new warehouse complex of about 20,000 m² is being designed at each — some 40,000 m² of new capacity in total. Anchor clients and strategic partners are welcome to join the project at the design stage.",
+ termB:"Two operating border terminals run by one team. A new warehouse complex is being designed at each site. Anchor clients and strategic partners are welcome to join the project at the design stage.",
  capT:"What the sites can do",
+ alcT:"Alcohol and excise goods",
+ alcB:"We handle excisable goods: receiving and storing alcohol at the bonded warehouse, applying excise stamps, clearing and accounting for consignments. Product labelling is done on the same sites, with no separate contractor needed.",
  c1:"Bonded warehouse", c2:"Product labelling", c3:"Alcohol and excise goods", c4:"Commercial storage", c5:"Layout tailored to the client",
  numT:"At a glance",
- n1:"operating terminals", n2:"of new capacity in design", n3:"security on site", n4:"M-9 Baltia highway",
+ n1:"operating terminals", n2b:"Excise", n2:"alcohol and excise stamps", n3:"security on site", n4:"M-9 Baltia highway",
  safeT:"Security",
  s1:"Controlled perimeter", s2:"Video surveillance", s3:"On-site guards",
  s4:"Access control and checkpoints", s5:"Fire safety systems", s6:"Backup power supply",
@@ -308,17 +342,21 @@ en:{
  okSave:"Contact saved", okCopy:"Link copied"
 },
 cn:{
+ brand1:"海关物流场站", brand2:"与中国鲜花公司 Amma Flowers",
  save:"保存联系人", share:"分享名片",
+ cMe:"米哈伊尔 · 直线电话", cMgr:"TLT M9 业务经理 · 货物与清关",
  aCall:"致电", aMgr:"业务经理", aMail:"邮箱", aSite:"TLT M9", aSite2:"斯堪的纳维亚",
  addrT:"场站地址", route:"导航前往",
  termT:"我们的场站",
  t1n:"TLT M9", t1d:"普斯科夫州，M-9「波罗的海」公路616公里处",
  t2n:"TLT 斯堪的纳维亚", t2d:"列宁格勒州维堡区",
- termB:"两个在运营的边境监管场站，由同一团队管理。每个场站正在规划约20 000平方米的新仓库，新增总面积约40 000平方米。欢迎核心客户与战略伙伴在筹建阶段参与项目。",
+ termB:"两个在运营的边境监管场站，由同一团队管理。每个场站都在规划新的仓储综合体。欢迎核心客户与战略伙伴在筹建阶段参与项目。",
  capT:"场站能力",
+ alcT:"酒类与消费税商品",
+ alcB:"我们承接应税商品业务：在保税仓库接收与存放酒类、粘贴消费税标识、办理清关与台账。商品标识同样在本场站完成，无需另找承包商。",
  c1:"保税仓库", c2:"商品标识系统", c3:"酒类与消费税商品", c4:"商业仓储", c5:"按客户需求灵活配置",
  numT:"概览",
- n1:"个在运营场站", n2:"规划中的新增面积", n3:"安保值守", n4:"M-9「波罗的海」公路",
+ n1:"个在运营场站", n2b:"消费税", n2:"酒类与消费税标识", n3:"安保值守", n4:"M-9「波罗的海」公路",
  safeT:"安全保障",
  s1:"受控周界", s2:"视频监控", s3:"人员值守",
  s4:"门禁与检查站", s5:"消防安全", s6:"备用供电",
@@ -353,8 +391,6 @@ function mapUrl(){
 function actions(){
   const t = T[LANG], c = CONTACT, tel = s => 'tel:' + s.replace(/[^\d+]/g,'');
   return [
-    {k:'call', href:tel(c.phone),   label:t.aCall, sub:c.phone},
-    {k:'mgr',  href:tel(c.manager), label:t.aMgr,  sub:c.manager},
     {k:'mail', href:'mailto:'+c.email, label:t.aMail, sub:c.email},
     {k:'site', href:c.site,  label:t.aSite,  sub:'tltm9.ru', blank:1},
     {k:'site', href:c.site2, label:t.aSite2, sub:'tlt-scand.ru', blank:1},
@@ -387,8 +423,9 @@ function setLang(l){
   $('#alt').textContent = alt; $('#alt').hidden = !alt;
   $('#rl').textContent = c.role[LANG] || c.role.ru;
   $('#mono').textContent = (c.last[0] || '') + (c.first[0] || '');
-  $('#addrText').innerHTML = (c.address[LANG] || c.address.ru) + (LANG !== 'ru' ? `<small>${c.address.ru}</small>` : '');
-  $('#routeBtn').href = mapUrl();
+  const tel = s => 'tel:' + s.replace(/[^\d+]/g,'');
+  $('#cMeBox').href = tel(c.phone);   $('#cMeNum').textContent = c.phone;
+  $('#cMgrBox').href = tel(c.manager);$('#cMgrNum').textContent = c.manager;
   document.querySelectorAll('.pill').forEach(p=>p.classList.toggle('on', p.dataset.lang===LANG));
   renderActions();
   try{ localStorage.setItem('tlt-card-lang', LANG); }catch(e){}
